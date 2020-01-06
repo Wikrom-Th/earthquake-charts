@@ -53,7 +53,7 @@ for i in range(50):
     total_earthquakes += count['count']
 
     # add place, magnitude, and time of the earthquakes to our list
-    for i in range(lens(data['features'])):
+    for i in range(len(data['features'])):
         unformatted_place.append(data['features'][i]['properties']['place'])
         mag.append(data['features'][i]['properties']['mag'])
         unformatted_time.append(data['features'][i]['properties']['time'])
