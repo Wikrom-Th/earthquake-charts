@@ -6,6 +6,8 @@ The code in this is project is originally used to collect data on earthquakes in
 
 ## Installation
 
+Python 3.6 or above is needed to run this project
+
 git clone this project
 
 `pip install -r requirements.txt`
