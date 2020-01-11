@@ -17,7 +17,7 @@ def chk_substr_not_case_sens(str_to_check, main_str):
         # TODO: check substring when check_len < main_len (this one always returns false, but that's not always the case) 
         return False
 
-# with open("other_eqs.csv") as f:
+# with open('./eq_data/other_eqs.csv') as f:
 #     reader = csv.reader(f, delimiter=',')
 #     count = 0
 #     for row in reader:
