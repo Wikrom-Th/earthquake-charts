@@ -30,7 +30,7 @@ maxlong = "155"
 minmag = "4"
 maxmag = "10"
 
-# for looping to get data in one-year intervals
+# for checking the total earthquakes acquired
 total_earthquakes = 0
 
 # these 3 things are relevant to the project
@@ -41,6 +41,7 @@ felt = []
 cdi = []
 mmi = []
 sig = []
+nst = []
 
 other_place = []
 other_mag = []
@@ -49,12 +50,14 @@ other_felt = []
 other_cdi = []
 other_mmi = []
 other_sig = []
+other_nst = []
 
 # time formatting function
 def format_time(unformatted_time):
     dt = datetime.datetime.fromtimestamp(unformatted_time/1000)
     return dt
 
+# loop over for 50 years starting from 1970
 for i in range(50):
     year = 1970 + i
     starttime = f"{year}-01-01"
@@ -84,6 +87,7 @@ for i in range(50):
         data_cdi = data['features'][i]['properties']['cdi']
         data_mmi = data['features'][i]['properties']['mmi']
         data_sig = data['features'][i]['properties']['sig']
+        data_nst = data['features'][i]['properties']['nst']
 
         # boolean to check if the data will be in others or not
         other = True
@@ -97,7 +101,7 @@ for i in range(50):
             if data_place[-7:].lower() == "myanmar" or data_place[-5:].lower() == "burma":
                 temp_place = "myanmar/burma"
 
-            elif data_place[-10:].lower() == "east timor":
+            elif data_place[-10:].lower() == "east timor" or data_place[-17:].lower() == "east timor region":
                 temp_place = "timor-leste"
 
             elif data_place[-7:].lower() == " region":
@@ -118,6 +122,7 @@ for i in range(50):
                 cdi.append(data_cdi)
                 mmi.append(data_mmi)
                 sig.append(data_sig)
+                nst.append(data_nst)
 
                 other = False
                 break
@@ -131,6 +136,7 @@ for i in range(50):
             other_cdi.append(data_cdi)
             other_mmi.append(data_mmi)
             other_sig.append(data_sig)
+            other_nst.append(data_nst)
 
     # print(data)
 
@@ -138,14 +144,14 @@ print(f"Total earthquakes in this region over the past 50 years: {total_earthqua
 
 # export data as csv files
 
-with open('pan_asia_eqs.csv', 'w', newline='') as f:
+with open('./eq_data/pan_asia_eqs.csv', 'w', newline='') as f:
     writer = csv.writer(f)
-    header = ['place', 'mag', 'time', 'felt', 'cdi', 'mmi', 'sig']
+    header = ['place', 'mag', 'time', 'felt', 'cdi', 'mmi', 'sig', 'nst']
     writer.writerow(header)
-    writer.writerows(zip(place, mag, time, felt, cdi, mmi, sig))
+    writer.writerows(zip(place, mag, time, felt, cdi, mmi, sig, nst))
 
-with open('other_eqs.csv', 'w', newline='') as f:
+with open('./eq_data/other_eqs.csv', 'w', newline='') as f:
     writer = csv.writer(f)
-    header = ['place', 'mag', 'time', 'felt', 'cdi', 'mmi', 'sig']
+    header = ['place', 'mag', 'time', 'felt', 'cdi', 'mmi', 'sig', 'nst']
     writer.writerow(header)
-    writer.writerows(zip(other_place, other_mag, other_time, other_felt, other_cdi, other_mmi, other_sig))
+    writer.writerows(zip(other_place, other_mag, other_time, other_felt, other_cdi, other_mmi, other_sig, other_nst))
