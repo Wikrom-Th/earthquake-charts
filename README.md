@@ -24,3 +24,7 @@ git clone this project
 through `get_data_usgs.py` or moved manually from `other_eqs.csv` using `assign_countries_to_place.py`  
 
 - `other_eqs.csv` is used to store other earthquakes that were queried along with from `get_data_usgs.py`
+
+## TODO
+
+Finish up the matplotlib part and the GUI
