@@ -1,6 +1,6 @@
 # earthquake-charts
 
-Use USGS Earthquake Catalog API to gather earthquake data and visualize them using matplotlib
+Use USGS Earthquake Catalog API to gather earthquake data.
 
 The code in this is project is originally used to collect data on earthquakes in pan-asia during the 50 year range of 1970-2019
 
